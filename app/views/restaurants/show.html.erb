@@ -26,5 +26,13 @@
   <%= @restaurant.nosplit %>
 </p>
 
+<h2>
+  It's Your Turn To Vote
+</h2>
+
+<%= button_to "Split", action: "index" %>
+
+<%= button_to "No Split", action: "index" %>
+
 <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
 <%= link_to 'Back', restaurants_path %>
