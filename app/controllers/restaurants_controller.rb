@@ -61,6 +61,23 @@ class RestaurantsController < ApplicationController
     end
   end
 
+  def search
+    @restaurant_name_param = params.fetch(:name, "")
+    @restaurant_city_param = params.fetch(:city, "")
+    @restaurant_state_param = params.fetch(:state, "")
+    @restaurants = Restaurant.all
+    if (@restaurant_name_param.present?)  
+       @restaurants = @restaurants.where('lower(name) like :name', name: @restaurant_name_param.downcase)
+    end
+    if (@restaurant_city_param.present?)
+       @restaurants = @restaurants.where('lower(city) like :city', city: @restaurant_city_param.downcase)
+    end
+    if (@restaurant_state_param.present?)
+       @restaurants = @restaurants.where('lower(state) like :state', state: @restaurant_state_param.downcase)
+    end
+    render :index    
+end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_restaurant
