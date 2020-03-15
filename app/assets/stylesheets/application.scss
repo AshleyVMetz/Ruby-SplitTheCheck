@@ -13,13 +13,21 @@
  *= require_tree .
  *= require_self
  */
-.header {
+header.main {
   text-align: center; // center on mobile
   @media (min-width: 30em) {
     text-align: left; // left align on desktop
+  background-color: #f9cd9c;
+  padding-top: 10px;
+  padding-bottom: 10px;
   }
-  background: #282;
-  margin: 0;
+  h1 {
+   text-align: center;
+   font-size: 4em;
+  }
+}  
+  h2 {
+   text-align: center;
+  }
 
-}
 

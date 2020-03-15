@@ -26,17 +26,19 @@
     <%= form.text_field :state %>
   </div>
 
-  <div class="field">
-    <%= form.label :split %>
-    <%= form.number_field :split %>
-  </div>
+<p>
+  <strong>Split:</strong>
+  <%= @restaurant.split %>
+</p>
 
-  <div class="field">
-    <%= form.label :nosplit %>
-    <%= form.number_field :nosplit %>
-  </div>
+<p>
+  <strong>Nosplit:</strong>
+  <%= @restaurant.nosplit %>
+</p>
+
 
   <div class="actions">
     <%= form.submit %>
+    <%= link_to "Cancel", :back  %>
   </div>
 <% end %>

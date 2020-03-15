@@ -1,6 +1,6 @@
 class RestaurantsController < ApplicationController
-  before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_restaurant, only: [:show, :edit, :update, :destroy, :split, :nosplit]
+  before_action :check_for_cancel, only: [:create, :update]
   # GET /restaurants
   # GET /restaurants.json
   def index
@@ -78,10 +78,31 @@ class RestaurantsController < ApplicationController
     render :index    
 end
 
+  def split
+     @curr_split = @restaurant.split
+     @restaurant.split = @curr_split + 1
+     @restaurant.save 
+     render :show
+  end
+
+  def nosplit
+     @curr_nosplit = @restaurant.nosplit
+     @restaurant.nosplit = @curr_nosplit + 1
+     @restaurant.save
+     render :show
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_restaurant
       @restaurant = Restaurant.find(params[:id])
+    end
+
+    def check_for_cancel
+      if params[:commit] == "Cancel"
+         redirect_to restaurants_path
+      end
     end
 
     # Only allow a list of trusted parameters through.

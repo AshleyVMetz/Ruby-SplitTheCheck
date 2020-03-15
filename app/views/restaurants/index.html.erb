@@ -1,13 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Restaurants</h1>
-
+<div class= "search">
 <%= form_tag(restaurants_search_path, method: :get) do %>
     <%= text_field_tag(:name) %>
     <%= text_field_tag(:city) %>
     <%= text_field_tag(:state) %>
     <%= submit_tag("Search") %>
 <% end %>
+</div>
+
+<h1>Restaurants</h1>
 
 <table>
   <thead>
