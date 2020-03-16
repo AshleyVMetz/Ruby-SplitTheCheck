@@ -1,6 +1,6 @@
 class RestaurantsController < ApplicationController
   before_action :set_restaurant, only: [:show, :edit, :update, :destroy, :split, :nosplit]
-  before_action :check_for_cancel, only: [:create, :update]
+  
   # GET /restaurants
   # GET /restaurants.json
   def index
@@ -28,7 +28,7 @@ class RestaurantsController < ApplicationController
 
     respond_to do |format|
       if @restaurant.save
-        format.html { redirect_to @restaurant, notice: 'Restaurant was successfully created.' }
+        format.html { redirect_to restaurants_path, notice: 'Restaurant was successfully created.' }
         format.json { render :show, status: :created, location: @restaurant }
       else
         format.html { render :new }
@@ -99,14 +99,17 @@ end
       @restaurant = Restaurant.find(params[:id])
     end
 
-    def check_for_cancel
-      if params[:commit] == "Cancel"
-         redirect_to restaurants_path
-      end
-    end
-
     # Only allow a list of trusted parameters through.
     def restaurant_params
-      params.require(:restaurant).permit(:name, :city, :state, :split, :nosplit)
+      vote = params[:restaurant][:vote]
+      permitted = params.require(:restaurant).permit(:name, :city, :state, :split, :nosplit)
+      if vote == "split"
+         permitted[:split] = 1
+         permitted[:nosplit] = 0
+      elsif vote == "nosplit"
+         permitted[:split] = 0
+         permitted[:nosplit] = 1
+      end
+      permitted
     end
 end

@@ -2,12 +2,14 @@
 
 one:
   name: MyString
-  location: MyString
+  city: MyString
+  state: MyString
   split: 1
   nosplit: 1
 
 two:
   name: MyString
-  location: MyString
+  city: MyString
+  state: MyString
   split: 1
   nosplit: 1
