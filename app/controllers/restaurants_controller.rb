@@ -1,4 +1,5 @@
 class RestaurantsController < ApplicationController
+  protect_from_forgery
   before_action :set_restaurant, only: [:show, :edit, :update, :destroy, :split, :nosplit]
   
   # GET /restaurants

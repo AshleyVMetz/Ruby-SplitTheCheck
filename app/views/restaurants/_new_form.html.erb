@@ -27,16 +27,22 @@
   </div>
 
   <div class="field">
+     <div class = "radio">
+
     <%= form.radio_button :vote, "split" %>
     <%= form.label :vote, "Split", value: "split" %>
     <%= form.radio_button :vote, "nosplit" %>
-    <%= form.label :vote, "Nosplit", value: "nosplit" %>
+    <%= form.label :vote, "No Split", value: "nosplit" %>
+    </div>
 
   </div>
 
 
   <div class="actions">
     <%= form.submit %>
+   <div class = "cancel">
     <%= link_to "Cancel", :back  %>
-  </div>
+   </div>
+ 
+ </div>
 <% end %>
