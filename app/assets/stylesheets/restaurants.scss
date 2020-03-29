@@ -6,6 +6,11 @@ body {
   
 }
 
+form.button_to {
+ width: 100px;
+ display: inline-block;
+}
+
 div.search {
   display: flex;
   flex-flow: row wrap;
@@ -55,17 +60,36 @@ div.addLink {
   }  
 }
 
-div.cancel {
-  a {
+.button {
+  
     background-color: #EEEEEE;
     border-radius: 5px;
+    border: none;
+    font: inherit;
+    color: inherit;
     padding: 8px 20px;
     padding-top: 15px;
     margin-left: 10px;
     text-decoration: none;
     display: inline-block;
-  }
+  
 }
+
+.button:hover {
+
+    color: #fff;
+    background-color: #000;
+
+}
+
+.back {
+    float: left;
+}
+
+h3 {
+    color: blueviolet;
+  }
+
 
 div.radio {
   label {
@@ -75,7 +99,17 @@ div.radio {
   }
 }
 
+#error_explanation
+{
+ width: 100% !important;
+}
 
+.field_with_errors {
+  display: inherit !important;
+  background-color: white !important;
+  color: red;
+
+}
 table {
   display: inline-block;
     table-layout: fixed;

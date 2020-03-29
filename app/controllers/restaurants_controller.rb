@@ -80,6 +80,9 @@ class RestaurantsController < ApplicationController
 end
 
   def split
+    # if (@restaurant.split).nil?
+    # @restaruant.split = 0
+    # end     
      @curr_split = @restaurant.split
      @restaurant.split = @curr_split + 1
      @restaurant.save 
@@ -87,8 +90,14 @@ end
   end
 
   def nosplit
+    # if (@restaurant.nosplit).nil?
+     
+    # @restaurant.nosplit = 0     
+    # end
      @curr_nosplit = @restaurant.nosplit
+      
      @restaurant.nosplit = @curr_nosplit + 1
+     
      @restaurant.save
      render :show
   end

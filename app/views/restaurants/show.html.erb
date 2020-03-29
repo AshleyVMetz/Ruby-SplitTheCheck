@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<h3> Restaurant Details: </h3>
+
 <p>
   <strong>Name:</strong>
   <%= @restaurant.name %>
@@ -17,22 +19,26 @@
 
 
 <p>
-  <strong>Split:</strong>
+  <strong>Split Yes Vote:</strong>
   <%= @restaurant.split %>
 </p>
 
 <p>
-  <strong>Nosplit:</strong>
+  <strong>Split No Vote:</strong>
   <%= @restaurant.nosplit %>
 </p>
 
-<h2>
-  It's Your Turn To Vote
+<%= link_to 'Edit', edit_restaurant_path(@restaurant), class: "button" %>
+
+
+<h3>
+  It's Your Turn To Vote!
 </h2>
 
-<%= button_to "Split", {id: @restaurant.id, action: "split"} %>
+<div class = "showButton">
+<%= button_to "Yes Split", {id: @restaurant.id, action: "split" }, class: "button" %>
 
-<%= button_to "No Split", {id: @restaurant.id, action: "nosplit"}  %>
+<%= button_to "No Split", {id: @restaurant.id, action: "nosplit" }, class: "button"  %>
 
-<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
-<%= link_to 'Back', restaurants_path %>
+</div>
+<%= link_to 'Back', restaurants_path, class: "back" %>

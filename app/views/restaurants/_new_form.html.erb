@@ -28,7 +28,7 @@
 
   <div class="field">
      <div class = "radio">
-
+    <h2>Willing to Split the Check?</h2>
     <%= form.radio_button :vote, "split" %>
     <%= form.label :vote, "Split", value: "split" %>
     <%= form.radio_button :vote, "nosplit" %>
@@ -39,10 +39,9 @@
 
 
   <div class="actions">
-    <%= form.submit %>
-   <div class = "cancel">
-    <%= link_to "Cancel", :back  %>
-   </div>
+    <%= form.submit "Create Restaurant", class:"button" %>
+    <%= link_to "Cancel", :back, class:"button"  %>
+   
  
  </div>
 <% end %>
