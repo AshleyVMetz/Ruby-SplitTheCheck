@@ -49,16 +49,6 @@ padding: 10px;
 
 }
 
-div.addLink {
-  a:link, a:visited {
-  background-color: white;
-  border: 1px solid black;
-  padding: 14px 25px;
-  padding-top: 15px;
-  text-decoration: none;
-  display: inline-block;
-  }  
-}
 
 .button {
   
@@ -84,15 +74,19 @@ div.addLink {
 
 .back {
     float: left;
+    margin: 40px;
+    color:blue;
 }
 
 h3 {
-    color: blueviolet;
+    color: #6fa8dc;
+    font-size: 1.4em;
   }
 
 
 div.radio {
   label {
+  margin-bottom: 40px;
   margin-left: -3px;
   margin-right: 10px;
   display: inline-block;
