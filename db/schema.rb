@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_13_222315) do
+ActiveRecord::Schema.define(version: 2020_03_30_213312) do
 
   create_table "restaurants", force: :cascade do |t|
     t.string "name"
-    t.integer "split"
-    t.integer "nosplit"
+    t.integer "split", default: 0
+    t.integer "nosplit", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "city"
