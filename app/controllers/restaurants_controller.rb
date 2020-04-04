@@ -1,7 +1,6 @@
 class RestaurantsController < ApplicationController
   protect_from_forgery
-  before_action :authenticate_user!, except: [ :index ]
-  before_action :authenticate_user!, only: [ :index ]
+  before_action :authenticate_user!, except: [ :index, :search ]
   before_action :set_restaurant, only: [:show, :edit, :update, :destroy, :split, :nosplit]
   
   # GET /restaurants
@@ -81,10 +80,12 @@ class RestaurantsController < ApplicationController
     render :index    
 end
 
-  def split
-    # if (@restaurant.split).nil?
-    # @restaruant.split = 0
-    # end     
+  def split 
+     @userID = current_user.id
+     @restaurantID = @restaurant.id
+     @split = true
+     @voteHistory = VoteHistory.new( user_id:@userID, restaurant_id:@restaurantID, split:@split)
+     @voteHistory.save
      @curr_split = @restaurant.split
      @restaurant.split = @curr_split + 1
      @restaurant.save 
@@ -92,14 +93,14 @@ end
   end
 
   def nosplit
-    # if (@restaurant.nosplit).nil?
-     
-    # @restaurant.nosplit = 0     
-    # end
+     @userID = current_user.id
+     @restaurantID = @restaurant.id
+     byebug
+     @split = false
+     @voteHistory = VoteHistory.new( user_id:@userID, restaurant_id:@restaurantID, split:@split)
+     @voteHistory.save
      @curr_nosplit = @restaurant.nosplit
-      
      @restaurant.nosplit = @curr_nosplit + 1
-     
      @restaurant.save
      render :show
   end
@@ -124,4 +125,6 @@ end
       end
       permitted
     end
+
+    
 end
