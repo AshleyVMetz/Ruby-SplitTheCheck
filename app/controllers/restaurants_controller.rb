@@ -95,7 +95,6 @@ end
   def nosplit
      @userID = current_user.id
      @restaurantID = @restaurant.id
-     byebug
      @split = false
      @voteHistory = VoteHistory.new( user_id:@userID, restaurant_id:@restaurantID, split:@split)
      @voteHistory.save
