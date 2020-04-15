@@ -2,10 +2,10 @@
 
 one:
   user: one
-  restaurants: one
-  vote: false
+  restaurant: one
+  split: false
 
 two:
   user: two
-  restaurants: two
-  vote: false
+  restaurant: two
+  split: false

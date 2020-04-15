@@ -1,7 +1,11 @@
 require 'test_helper'
 
 class RestaurantsControllerTest < ActionDispatch::IntegrationTest
+
   setup do
+    get '/users/sign_in'
+    sign_in users(:user_001)
+    post user_session_url
     @restaurant = restaurants(:one)
   end
 
@@ -24,7 +28,7 @@ class RestaurantsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should show restaurant" do
-    get restaurant_url(@restaurant)
+    get restaurants_url(@restaurant)
     assert_response :success
   end
 
@@ -95,7 +99,9 @@ class RestaurantsControllerTest < ActionDispatch::IntegrationTest
   assert_equal @restaurant.reload.nosplit, original_nosplit + 1
   end
 
-  
+  test "should add to vote history" do
+ 
+  end  
 
 end
 
