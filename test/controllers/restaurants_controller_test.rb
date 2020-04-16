@@ -99,9 +99,20 @@ class RestaurantsControllerTest < ActionDispatch::IntegrationTest
   assert_equal @restaurant.reload.nosplit, original_nosplit + 1
   end
 
-  test "should add to vote history" do
- 
+  test "should add to vote history with split" do
+  assert_difference "VoteHistory.count", 1 do
+  post restaurants_split_url(@restaurant)
+  assert_response :success
   end  
+  end 
+
+  test "should add to vote history with no split" do
+  assert_difference "VoteHistory.count", 1 do
+  post restaurants_nosplit_url(@restaurant)
+  assert_response :success
+  end
+  end
+    
 
 end
 
