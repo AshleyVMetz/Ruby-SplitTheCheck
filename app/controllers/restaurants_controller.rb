@@ -1,7 +1,7 @@
 class RestaurantsController < ApplicationController
   protect_from_forgery
   before_action :authenticate_user!, except: [ :index, :search ]
-  before_action :set_restaurant, only: [:show, :edit, :update, :destroy, :split, :nosplit]
+  before_action :set_restaurant, except: [:index, :search, :new, :create]
   
   # GET /restaurants
   # GET /restaurants.json
@@ -27,9 +27,15 @@ class RestaurantsController < ApplicationController
   # POST /restaurants.json
   def create
     @restaurant = Restaurant.new(restaurant_params)
-
     respond_to do |format|
       if @restaurant.save
+        vote = params[:restaurant][:vote]
+        if vote == "split"
+         @restaurant.add_vote(current_user.id, true)
+        elsif vote == "nosplit"
+          @restaurant.add_vote(current_user.id, false)         
+        end 
+
         format.html { redirect_to restaurants_path, notice: 'Restaurant was successfully created.' }
         format.json { render :show, status: :created, location: @restaurant }
       else
@@ -86,9 +92,7 @@ end
      @split = true
      @voteHistory = VoteHistory.new( user_id:@userID, restaurant_id:@restaurantID, split:@split)
      @voteHistory.save
-     @curr_split = @restaurant.split
-     @restaurant.split = @curr_split + 1
-     @restaurant.save 
+     
      render :show
   end
 
@@ -98,12 +102,15 @@ end
      @split = false
      @voteHistory = VoteHistory.new( user_id:@userID, restaurant_id:@restaurantID, split:@split)
      @voteHistory.save
-     @curr_nosplit = @restaurant.nosplit
-     @restaurant.nosplit = @curr_nosplit + 1
-     @restaurant.save
+    
      render :show
   end
-
+  
+  def add_comment
+     
+     @restaurant.add_comment(current_user.id, comment_params[:comment])
+     head :ok
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -113,17 +120,13 @@ end
 
     # Only allow a list of trusted parameters through.
     def restaurant_params
-      vote = params[:restaurant][:vote]
-      permitted = params.require(:restaurant).permit(:name, :city, :state, :split, :nosplit)
-      if vote == "split"
-         permitted[:split] = 1
-         permitted[:nosplit] = 0
-      elsif vote == "nosplit"
-         permitted[:split] = 0
-         permitted[:nosplit] = 1
-      end
+      permitted = params.require(:restaurant).permit(:name, :city, :state)
+     
       permitted
     end
 
+    def comment_params
+      params.require(:comment).permit(:comment)
+    end
     
 end

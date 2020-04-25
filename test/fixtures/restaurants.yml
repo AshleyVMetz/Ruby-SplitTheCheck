@@ -4,12 +4,10 @@ one:
   name: MyString
   city: MyString
   state: MyString
-  split: 1
-  nosplit: 1
+  
 
 two:
   name: MyString
   city: MyString
   state: MyString
-  split: 1
-  nosplit: 1
+  
