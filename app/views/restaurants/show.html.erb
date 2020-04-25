@@ -30,6 +30,9 @@
 
 <%= link_to 'Edit', edit_restaurant_path(@restaurant), class: "button" %>
 
+<%= button_to "Pick As A Favorite", {id: @restaurant.id, action: "add_favorite" }, class: "button"  %>
+
+
 
 <h2>
   It's Your Turn To Vote!

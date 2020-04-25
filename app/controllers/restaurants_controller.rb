@@ -115,7 +115,10 @@ end
   def add_favorite
 
      @restaurant.add_favorite(current_user.id)
+     
      head :ok
+
+
   end
 
 
