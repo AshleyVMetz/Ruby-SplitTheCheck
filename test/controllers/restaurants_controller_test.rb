@@ -122,6 +122,14 @@ class RestaurantsControllerTest < ActionDispatch::IntegrationTest
   end
   end
 
+  test "should add a favorite" do
+   assert_difference "Favorite.count", 1 do
+   post restaurants_add_favorite_url(@restaurant)
+   assert_response :success
+
+  end
+  end
+
 
 end
 

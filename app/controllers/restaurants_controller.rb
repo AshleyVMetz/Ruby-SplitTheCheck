@@ -112,6 +112,14 @@ end
      head :ok
   end
 
+  def add_favorite
+
+     @restaurant.add_favorite(current_user.id)
+     head :ok
+  end
+
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_restaurant
