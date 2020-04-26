@@ -109,14 +109,30 @@ end
   def add_comment
      
      @restaurant.add_comment(current_user.id, comment_params[:comment])
-     head :ok
+     respond_to do |format|
+     format.html { redirect_to restaurants_path, notice: 'Comment was successfully created.' }
+      
+     end
   end
+
+  def new_comment
+
+     @comment = Comment.new
+     
+  end
+
 
   def add_favorite
 
      @restaurant.add_favorite(current_user.id)
+     respond_to do |format|
+      format.html { 
+           flash.now[:notice] = "Favorite was Added"  
+           render :show }
+      format.json { head :ok }
+    end
      
-     head :ok
+    
 
 
   end

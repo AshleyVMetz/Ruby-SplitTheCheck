@@ -30,8 +30,10 @@
 
 <%= link_to 'Edit', edit_restaurant_path(@restaurant), class: "button" %>
 
-<%= button_to "Pick As A Favorite", {id: @restaurant.id, action: "add_favorite" }, class: "button"  %>
 
+<%= link_to 'Comment', restaurants_new_comment_path(@restaurant), class: "button" %>
+
+<%= button_to "Favorite", {id: @restaurant.id, action: "add_favorite" }, class: "button"  %>
 
 
 <h2>

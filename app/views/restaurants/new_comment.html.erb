@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<h3> Restaurant Details: </h3>
+
+<p>
+  <strong>Name:</strong>
+  <%= @restaurant.name %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @restaurant.city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @restaurant.state %>
+</p>
+
+<h3> 
+   Comment:
+</h3>
+
+<%= form_with(url: restaurants_add_comment_path, model: @comment, local: true) do |form| %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+      <% @comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :comment %>
+    <%= form.text_area :comment %>
+  </div>
+  <div class="actions">
+    <%= form.submit "Comment", class:"button" %>
+    <%= link_to "Cancel", :back, class:"button"  %>
+
+
+ </div>
+<% end %>
+
+<%= link_to 'Back', restaurants_path, class: "back" %>
