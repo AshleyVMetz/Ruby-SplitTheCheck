@@ -4,18 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :comments
+  has_many :favorites
+  has_many :votes, class_name: "VoteHistory"
+  has_many :commented_restaurants, through: :comments, source: :restaurant
 
-  def get_comment
-    Comment.where(user_id:self.id)
-  end
 
-  def get_favorite
-    Favorite.where(user_id:self.id)      
-  end
-
-  def get_voteHistory
-    VoteHistory.where(user_id:self.id)      
-  end
 
 
 end

@@ -6,9 +6,10 @@ class UsersController < ApplicationController
   # GET /restaurants/1
   # GET /restaurants/1.json
   def show
-     @user = current_user.id     
-     @user.get_comment
-     @user.get_favorite
-     @user.get_voteHistory     
+     @user = current_user
+     @comments = @user.comments
+     @favorites = @user.favorites          
+     @votes = @user.votes       
   end
 
+end

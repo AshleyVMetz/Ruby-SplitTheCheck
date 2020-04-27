@@ -1,0 +1,89 @@
+<h1>User Summary</h1>
+<h3>Restaurants with Comments</h3>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Comment</th>
+      
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td><%= comment.restaurant.name %></td>
+        <td><%= comment.restaurant.city %></td>
+        <td><%= comment.restaurant.state %></td>
+        <td><%= comment.comment %></td>
+       
+      
+     
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<h3>Restaurants with Favorites</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>City</th>
+      <th>State</th>
+      
+
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @favorites.each do |favorite| %>
+      <tr>
+        <td><%= favorite.restaurant.name %></td>
+        <td><%= favorite.restaurant.city %></td>
+        <td><%= favorite.restaurant.state %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h3>Restaurants with Votes</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Split</th>
+      <th>NoSplit</th>
+
+
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @votes.each do |vote| %>
+      <tr>
+        <td><%= vote.restaurant.name %></td>
+        <td><%= vote.restaurant.city %></td>
+        <td><%= vote.restaurant.state %></td>
+        <td><%= vote.restaurant.split %></td>
+        <td><%= vote.restaurant.nosplit %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Back', restaurants_path, class: "back" %>
+
