@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def show
      @user = current_user
      @comments = @user.comments
-     @favorites = @user.favorites          
+     @favorites = @user.favorites.group(:restaurant_id)          
      @votes = @user.votes.group(:restaurant_id)       
   end
 
