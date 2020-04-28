@@ -10,6 +10,10 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
      
  end
 
-  test 'should get summary'
+  test 'should get summary' do
+    get users_show_path(users(:user_001))
+    assert_response :success
    
   end
+
+end

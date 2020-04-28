@@ -50,7 +50,13 @@
 <br>
 
 <%= link_to 'Add a Restaurant', new_restaurant_path, class: "button" %>
-<%= link_to 'User Summary', users_show_path(current_user.id), class: "button" %>
 
 
+<% if user_signed_in? %>
+   <%= link_to 'User Summary', users_show_path(current_user.id), class: "button" %>
+   <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "button" %>
+
+<% elsif %>
+<%= link_to 'Login', new_user_session_path, class: "button" %>
+<% end %>
 

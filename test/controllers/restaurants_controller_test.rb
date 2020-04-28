@@ -117,7 +117,8 @@ class RestaurantsControllerTest < ActionDispatch::IntegrationTest
   test "should add a comment" do
    assert_difference "Comment.count", 1 do
    post restaurants_add_comment_url(@restaurant), params: {comment: {comment: "This is my comment"}}.as_json
-   assert_response :success
+   
+   assert_redirected_to restaurants_path
   
   end
   end
